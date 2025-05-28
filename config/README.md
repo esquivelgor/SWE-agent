@@ -1,5 +1,5 @@
 * Default config: `anthropic_filemap.yaml`
-* `swebench_submissions`: Configs that were used for swebench submissions
+* `benchmarks`: Configs that were used for swebench submissions and other benchmarks
 * `sweagent_0_7`: Configs from SWE-agent 0.7, similar to the one used in the paper
 * `exotic`: Various specific configurations that might be more of niche interest
 * `human`: Demo/debug configs that have the human type commands and run without a LM
