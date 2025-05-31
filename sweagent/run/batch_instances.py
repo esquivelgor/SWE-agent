@@ -118,7 +118,8 @@ class SimpleBatchInstance(BaseModel):
         elif "/" not in self.repo_name:
             repo = PreExistingRepoConfig(repo_name=self.repo_name, base_commit=self.base_commit)
         else:
-            repo = LocalRepoConfig(path=Path(self.repo_name), base_commit=self.base_commit)
+            repo = GithubRepoConfig(github_url=self.repo_name, base_commit=self.base_commit)
+
         if isinstance(deployment, LocalDeploymentConfig):
             if self.image_name:
                 msg = "Local deployment does not support image_name"
@@ -232,9 +233,15 @@ class InstancesFromHuggingFace(BaseModel, AbstractInstanceSource):
 
     def get_instance_configs(self) -> list[BatchInstance]:
         from datasets import load_dataset
-
-        ds: list[dict[str, Any]] = load_dataset(self.dataset_name, split=self.split)  # type: ignore
-        simple_instances: list[SimpleBatchInstance] = [SimpleBatchInstance.model_validate(instance) for instance in ds]
+        
+        ds: list[dict[str, Any]] = load_dataset(self.dataset_name, split=self.split,token="")  # type: ignore
+        simple_instances: list[SimpleBatchInstance] = [SimpleBatchInstance(
+            image_name=instance["image_name"],
+            problem_statement=instance["problem_statement"],
+            instance_id=instance["instance_id"],
+            repo_name=instance["repo"],
+            base_commit=instance["base_commit"],
+        ) for instance in ds]
         instances = [instance.to_full_batch_instance(self.deployment) for instance in simple_instances]
         return _filter_batch_items(instances, filter_=self.filter, slice_=self.slice, shuffle=self.shuffle)
 

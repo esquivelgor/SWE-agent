@@ -7,20 +7,19 @@
 
 agent:
   model:
-    name: ollama/qwen3-14b #llama3.1:8b
-    api_base: https://myzapoboy--ollama-server-ollamaserver-serve.modal.run
+    name: ollama/qwen3:14b #devstral #llama3.1:8b
+    api_base: https://itesm--ollama-phycho-server-ollamaserver-serve.modal.run
     per_instance_cost_limit: 0
     total_cost_limit: 0
-    per_instance_call_limit: 100
+    per_instance_call_limit: 15
     max_input_tokens: 0
   templates:
     system_template: |-
-      SETTING: You are an autonomous programmer, and you're working directly in the command line with a special interface.
+      SETTING: You are an autonomous programmer working in a command-line interface with a file editor.
+      You see {{WINDOW}} lines of a file at a time. You can use normal shell commands and the following custom TOOLS:
 
-      The special interface consists of a file editor that shows you {{WINDOW}} lines of a file at a time.
-      In addition to typical bash commands, you can also use the following commands to help you navigate and edit files.
-
-      COMMANDS:
+      You have available these tools, just use the ones are shown, don't create more and don't merge commands or tools in the same actions, use one per time.
+      TOOLS:
       {{command_docs}}
 
       Please note that THE EDIT COMMAND REQUIRES PROPER INDENTATION.
@@ -33,16 +32,17 @@ agent:
       You need to format your output using two fields; discussion and command.
       Your output should always include _one_ discussion and _one_ command field EXACTLY as in the following example:
       DISCUSSION
-      First I'll start by using ls to see what files are in the current directory. Then maybe we can look at some relevant files to see what they look like.
-      ```
+      First I'll start by...
+      <command>
       ls -a
-      ```
+      </command>
 
+      You can use bash commands but NEVER add multiple commands, tools, backticks, or markdown formatting.
+      
       You should only include a *SINGLE* command in the command section and then wait for a response from the shell before continuing with more discussion and commands. Everything you include in the DISCUSSION section will be saved for future reference.
       If you'd like to issue two commands at once, PLEASE DO NOT DO THAT! Please instead first submit just the first command, and then after receiving a response you'll be able to issue the second command.
       You're free to use any other bash commands you want (e.g. find, grep, cat, ls, cd) in addition to the special commands listed above.
 
-      Your output NEEDS to be formatted correctly. You must always include one discussion and one command as part of your response. 
       Make sure you do NOT have multiple discussion/command tags. 
       Again, DO NOT put any unnecessary information other than the DISCUSSION and COMMAND parts.
             
@@ -85,10 +85,10 @@ agent:
 
       Your output should always include _one_ discussion and _one_ command field EXACTLY as in the following example:
       DISCUSSION
-      First I'll start by using ls to see what files are in the current directory. Then maybe we can look at some relevant files to see what they look like.
-      ```
+      First I'll start by...
+      <command>
       ls -a
-      ```
+      </command>
 
       (Open file: {{openfile}})
       (Current directory: {{working_dir}})
@@ -116,7 +116,7 @@ agent:
       --- END OF DEMONSTRATION ---
     demonstrations:
       #- trajectories/demonstrations/replay__marshmallow-code__marshmallow-1867__function_calling_replace_from_source/marshmallow-code__marshmallow-1867.traj
-      - trajectories/demonstrations/replay__marshmallow-code__marshmallow-1867__default_sys-env_window100__t-0.20__p-0.95__c-2.00__install-1/marshmallow-code__marshmallow-1867.traj
+      - trajectories/demonstrations/replay__marshmallow-code__marshmallow-1867__xml_sys-env_window100__t-0.20__p-0.95__c-2.00__install-1/marshmallow-code__marshmallow-1867.traj
   tools:
     env_variables:
       WINDOW: 100
@@ -128,7 +128,7 @@ agent:
       - path: tools/edit_linting
       - path: tools/submit
     parse_function:
-      type: thought_action #function_calling # thought_action 
+      type: xml_thought_action #function_calling # thought_action 
   history_processors:
     - type: last_n_observations
       n: 5
