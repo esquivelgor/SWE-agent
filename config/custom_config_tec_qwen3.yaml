@@ -6,14 +6,14 @@
 #   github_url: https://github.com/SWE-agent/test-repo/issues/1
 
 agent:
-  max_requeries: 3
   model:
-    name: ollama/qwen3:14b #devstral #llama3.1:8b
-    api_base: https://itesm--ollama-phycho-server-ollamaserver-serve.modal.run
+    name: ollama/hf.co/esquivelgor/SWE_QwenOOP_Model_2_v16bits:F16 #devstral #llama3.1:8b
+    api_base: https://itesm--ollama-phycho-server-ollamaserver-serve-dev.modal.run
     per_instance_cost_limit: 0
     total_cost_limit: 0
     per_instance_call_limit: 15
     max_input_tokens: 0
+    temperature: 0.0
   templates:
     system_template: |-
       SETTING: You are an autonomous programmer working in a command-line interface with a file editor.
