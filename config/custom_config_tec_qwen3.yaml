@@ -6,6 +6,7 @@
 #   github_url: https://github.com/SWE-agent/test-repo/issues/1
 
 agent:
+  max_requeries: 3
   model:
     name: ollama/qwen3:14b #devstral #llama3.1:8b
     api_base: https://itesm--ollama-phycho-server-ollamaserver-serve.modal.run
@@ -129,6 +130,3 @@ agent:
       - path: tools/submit
     parse_function:
       type: xml_thought_action #function_calling # thought_action 
-  history_processors:
-    - type: last_n_observations
-      n: 5
