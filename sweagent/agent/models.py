@@ -55,11 +55,11 @@ _THREADS_THAT_USED_API_KEYS = []
 class RetryConfig(PydanticBaseModel):
     """This configuration object specifies how many times to retry a failed LM API call."""
 
-    retries: int = 1
+    retries: int = 2
     """Number of retries"""
-    min_wait: float = 800
+    min_wait: float = 550
     """Minimum wait time between retries (random exponential wait)"""
-    max_wait: float = 820
+    max_wait: float = 650
     """Maximum wait time between retries (random exponential wait)"""
 
 
