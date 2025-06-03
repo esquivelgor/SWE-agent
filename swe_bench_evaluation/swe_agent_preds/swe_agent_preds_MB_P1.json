@@ -1,0 +1,262 @@
+{
+    "sphinx-doc__sphinx-8506": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "sphinx-doc__sphinx-8506",
+        "model_patch": "diff --git a/test_option.rst b/test_option.rst\nnew file mode 100644\nindex 0000000..1e9feaa\n--- /dev/null\n+++ b/test_option.rst\n@@ -0,0 +1,4 @@\n+.. option:: --enable PATTERN\n+\n+   Immediately enable events matching *PATTERN*\n+\n"
+    },
+    "scikit-learn__scikit-learn-13439": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "scikit-learn__scikit-learn-13439",
+        "model_patch": "diff --git a/reproduce.py b/reproduce.py\nnew file mode 100644\nindex 0000000..980dcfc\n--- /dev/null\n+++ b/reproduce.py\n@@ -0,0 +1,15 @@\n+from sklearn import svm\n+from sklearn.datasets import samples_generator\n+from sklearn.feature_selection import SelectKBest\n+from sklearn.feature_selection import f_regression\n+from sklearn.pipeline import Pipeline\n+\n+# generate some data to play with\n+X, y = samples_generator.make_classification(\n+    n_informative=5, n_redundant=0, random_state=42)\n+\n+anova_filter = SelectKBest(f_regression, k=5)\n+clf = svm.SVC(kernel='linear')\n+pipe = Pipeline([('anova', anova_filter), ('svc', clf)])\n+\n+len(pipe)\n"
+    },
+    "django__django-12983": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-12983",
+        "model_patch": "diff --git a/reproduce.py b/reproduce.py\nnew file mode 100644\nindex 0000000..8b13789\n--- /dev/null\n+++ b/reproduce.py\n@@ -0,0 +1 @@\n+\n"
+    },
+    "sphinx-doc__sphinx-7975": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "sphinx-doc__sphinx-7975",
+        "model_patch": ""
+    },
+    "django__django-15738": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-15738",
+        "model_patch": "diff --git a/tests/testapp/models.py b/tests/testapp/models.py\nnew file mode 100644\nindex 0000000..2abbe65\n--- /dev/null\n+++ b/tests/testapp/models.py\n@@ -0,0 +1,26 @@\n+from django.db import models\n+\n+class Authors(models.Model):\n+    project_data_set = models.ForeignKey(\n+        \"ProjectDataSet\",\n+        on_delete=models.PROTECT\n+    )\n+    state = models.IntegerField()\n+    start_date = models.DateField()\n+    class Meta:\n+        unique_together = (('project_data_set', 'state', 'start_date'),)\n+class DataSet(models.Model):\n+    name = models.TextField(max_length=50)\n+\n+class Project(models.Model):\n+    data_sets = models.ManyToManyField(\n+        DataSet,\n+        through='ProjectDataSet',\n+    )\n+    name = models.TextField(max_length=50)\n+\n+class ProjectDataSet(models.Model):\n+    data_set = models.ForeignKey(DataSet, on_delete=models.PROTECT)\n+    project = models.ForeignKey(Project, on_delete=models.PROTECT)\n+    class Meta:\n+        unique_together = (('data_set', 'project'),)\n\\ No newline at end of file\n"
+    },
+    "scikit-learn__scikit-learn-25500": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "scikit-learn__scikit-learn-25500",
+        "model_patch": ""
+    },
+    "scikit-learn__scikit-learn-13496": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "scikit-learn__scikit-learn-13496",
+        "model_patch": "diff --git a/sklearn/ensemble/iforest.py b/sklearn/ensemble/iforest.py\nindex 8a1bd36..9f2c63c 100644\n--- a/sklearn/ensemble/iforest.py\n+++ b/sklearn/ensemble/iforest.py\n@@ -97,7 +97,49 @@ class IsolationForest(BaseBagging, OutlierMixin):\n         change to match other anomaly detection algorithm API which will be\n         the default behaviour in the future. As explained in details in the\n         ``offset_`` attribute documentation, the ``decision_function`` becomes\n-        dependent on the contamination parameter, in such a way that 0 becomes\n+        warm_start : bool, optional (default=False)\n+\n+            When set to ``True``, reuse the solution of the previous call to fit\n+\n+            and add more estimators to the ensemble, otherwise, just fit a whole\n+\n+            new forest. See :term:`the Glossary <warm_start>`.\n+\n+\n+            When set to ``True``, reuse the solution of the previous call to fit\n+\n+            and add more estimators to the ensemble, otherwise, just fit a whole\n+\n+            new forest. See :term:`the Glossary <warm_start>`.\n+\n+\n+            When set to ``True``, reuse the solution of the previous call to fit\n+\n+            and add more estimators to the ensemble, otherwise, just fit a whole\n+\n+            new forest. See :term:`the Glossary <warm_start>`.\n+\n+\n+            When set to ``True``, reuse the solution of the previous call to fit\n+\n+            and add more estimators to the ensemble, otherwise, just fit a whole\n+\n+            new forest. See :term:`the Glossary <warm_start>`.\n+\n+\n+            When set to ``True``, reuse the solution of the previous call to fit\n+\n+            and add more estimators to the ensemble, otherwise, just fit a whole\n+\n+            new forest. See :term:`the Glossary <warm_start>`.\n+\n+\n+            When set to ``True``, reuse the solution of the previous call to fit\n+\n+            and add more estimators to the ensemble, otherwise, just fit a whole\n+\n+            new forest. See :term:`the Glossary <warm_start>`.\n+\n         its natural threshold to detect outliers.\n \n         .. versionadded:: 0.20\n@@ -171,7 +213,10 @@ class IsolationForest(BaseBagging, OutlierMixin):\n                  max_features=1.,\n                  bootstrap=False,\n                  n_jobs=None,\n-                 behaviour='old',\n+        behaviour='old', \n+\n+        warm_start=False,\n+\n                  random_state=None,\n                  verbose=0):\n         super().__init__(\n"
+    },
+    "pytest-dev__pytest-11148": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "pytest-dev__pytest-11148",
+        "model_patch": ""
+    },
+    "django__django-13265": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-13265",
+        "model_patch": "diff --git a/tests/migrations/migrations_test_apps/alter_fk/book_app/migrations/0001_initial.py b/tests/migrations/migrations_test_apps/alter_fk/book_app/migrations/0001_initial.py\nindex 46543ca..1b72851 100644\n--- a/tests/migrations/migrations_test_apps/alter_fk/book_app/migrations/0001_initial.py\n+++ b/tests/migrations/migrations_test_apps/alter_fk/book_app/migrations/0001_initial.py\n@@ -8,12 +8,12 @@ class Migration(migrations.Migration):\n     ]\n \n     operations = [\n-        migrations.CreateModel(\n-            name='Book',\n-            fields=[\n-                ('id', models.AutoField(serialize=False, auto_created=True, primary_key=True)),\n-                ('title', models.CharField(max_length=50)),\n-                ('author', models.ForeignKey('author_app.Author', models.CASCADE)),\n-            ],\n+        migrations.AlterOrderWithRespectTo(\n+            name='lookimage',\n+            order_with_respect_to='look',\n+        ),\n+        migrations.AddIndex(\n+            model_name='lookimage',\n+            index=models.Index(fields=['look', '_order'], name='look_image_look_id_eaff30_idx'),\n         ),\n     ]\n"
+    },
+    "django__django-15996": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-15996",
+        "model_patch": "diff --git a/reproduce.py b/reproduce.py\nnew file mode 100644\nindex 0000000..1f4f3cf\n--- /dev/null\n+++ b/reproduce.py\n@@ -0,0 +1,14 @@\n+import os\n+import django\n+from django.db import models\n+import re\n+\n+# Configure Django settings for testing\n+os.environ.setdefault(\"DJANGO_SETTINGS_MODULE\", \"test_settings\")\n+django.setup()\n+\n+class TestModel(models.Model):\n+    regex_flags = models.IntegerField(default=re.UNICODE | re.IGNORECASE)\n+\n+# Check if the migration is generated correctly\n+print(\"Migration should show: default=re.RegexFlag[re.UNICODE | re.IGNORECASE]\")\ndiff --git a/test_app/__init__.py b/test_app/__init__.py\nnew file mode 100644\nindex 0000000..8b13789\n--- /dev/null\n+++ b/test_app/__init__.py\n@@ -0,0 +1 @@\n+\ndiff --git a/test_settings.py b/test_settings.py\nnew file mode 100644\nindex 0000000..58c3eb9\n--- /dev/null\n+++ b/test_settings.py\n@@ -0,0 +1,15 @@\n+INSTALLED_APPS = [\n+    'django.contrib.contenttypes',\n+    'django.contrib.auth',\n+    'django.contrib.sessions',\n+    'django.contrib.messages',\n+    'django.contrib.staticfiles',\n+    'test_app',  # Dummy app for our TestModel\n+]\n+\n+DATABASES = {\n+    'default': {\n+        'ENGINE': 'django.db.backends.sqlite3',\n+        'NAME': ':memory:',\n+    }\n+}\n"
+    },
+    "django__django-12700": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-12700",
+        "model_patch": "diff --git a/reproduce.py b/reproduce.py\nnew file mode 100644\nindex 0000000..39b10cd\n--- /dev/null\n+++ b/reproduce.py\n@@ -0,0 +1,60 @@\n+import pprint\n+\n+from django.conf import settings\n+\n+\n+\n+# Mock settings with simple nested structure\n+\n+settings.configure(\n+\n+    MY_SETTING = {\n+\n+        \"data\": [{\"secret\": \"value\"}]\n+\n+    }\n+\n+)\n+\n+\n+\n+from django.views.debug import SafeExceptionReporterFilter\n+\n+\n+\n+# Test output\n+\n+pprint.pprint(SafeExceptionReporterFilter().get_safe_settings()[\"MY_SETTING\"])\n+\n+print(\"Script completed successfully, no errors.\")\n+\n+import pprint\n+\n+from django.conf import settings\n+\n+\n+\n+# Mock settings with simple nested structure\n+\n+settings.configure(\n+\n+    MY_SETTING = {\n+\n+        \"data\": [{\"secret\": \"value\"}]\n+\n+    }\n+\n+)\n+\n+\n+\n+from django.views.debug import SafeExceptionReporterFilter\n+\n+\n+\n+# Test output\n+\n+pprint.pprint(SafeExceptionReporterFilter().get_safe_settings()[\"MY_SETTING\"])\n+\n+print(\"Script completed successfully, no errors.\")\n+\n"
+    },
+    "django__django-11905": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-11905",
+        "model_patch": ""
+    },
+    "matplotlib__matplotlib-26020": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "matplotlib__matplotlib-26020",
+        "model_patch": "diff --git a/reproduce.py b/reproduce.py\nnew file mode 100644\nindex 0000000..8bb60b3\n--- /dev/null\n+++ b/reproduce.py\n@@ -0,0 +1,9 @@\n+import matplotlib.pyplot as plt\n+from cartopy.crs import PlateCarree\n+from cartopy.mpl.geoaxes import GeoAxes\n+from mpl_toolkits.axes_grid1 import AxesGrid\n+\n+fig = plt.figure()\n+axes_class = (GeoAxes, dict(projection=PlateCarree()))\n+gr = AxesGrid(fig, 111, nrows_ncols=(1,1),\n+              axes_class=axes_class)\n"
+    },
+    "django__django-11422": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-11422",
+        "model_patch": ""
+    },
+    "django__django-12915": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-12915",
+        "model_patch": "diff --git a/django/contrib/staticfiles/handlers.py b/django/contrib/staticfiles/handlers.py\nindex 711d886..f371b59 100644\n--- a/django/contrib/staticfiles/handlers.py\n+++ b/django/contrib/staticfiles/handlers.py\n@@ -70,19 +70,47 @@ class StaticFilesHandler(StaticFilesHandlerMixin, WSGIHandler):\n \n \n class ASGIStaticFilesHandler(StaticFilesHandlerMixin, ASGIHandler):\n+\n     \"\"\"\n+\n     ASGI application which wraps another and intercepts requests for static\n+\n     files, passing them off to Django's static file serving.\n+\n     \"\"\"\n+\n     def __init__(self, application):\n+\n         self.application = application\n+\n         self.base_url = urlparse(self.get_base_url())\n \n+\n+\n+    async def get_response_async(self, request):\n+\n+        try:\n+\n+            return await self.serve(request)\n+\n+        except Http404 as e:\n+\n+            return response_for_exception(request, e)\n+\n+\n+\n     async def __call__(self, scope, receive, send):\n+\n         # Only even look at HTTP requests\n+\n         if scope['type'] == 'http' and self._should_handle(scope['path']):\n+\n             # Serve static content\n+\n             # (the one thing super() doesn't do is __call__, apparently)\n+\n             return await super().__call__(scope, receive, send)\n+\n         # Hand off to the main app\n-        return await self.application(scope, receive, send)\n+\n+        return await self.application(scope, receive, send)\n\\ No newline at end of file\n"
+    },
+    "sympy__sympy-12419": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "sympy__sympy-12419",
+        "model_patch": "diff --git a/reproduce.py b/reproduce.py\nnew file mode 100644\nindex 0000000..13687dd\n--- /dev/null\n+++ b/reproduce.py\n@@ -0,0 +1,23 @@\n+from sympy import *\n+from sympy import Q as Query\n+from collections.abc import Mapping\n+n = Symbol('n', integer=True, positive=True)\n+i, j = symbols('i j', integer=True)\n+M = MatrixSymbol('M', n, n)\n+\n+e = None\n+with assuming(Query.orthogonal(M)):\n+    e = refine((M.T * M).doit())\n+\n+# Correct: M.T * M is an identity matrix.\n+print(e, e[0, 0], e[0, 1], e[1, 0], e[1, 1])\n+\n+# Correct: The output is True True\n+print(ask(Query.diagonal(e)), ask(Query.integer_elements(e)))\n+\n+# Correct: The sum of the diagonal elements is n\n+print(Sum(e[i, i], (i, 0, n-1)).doit())\n+\n+# So far so good\n+# Total sum of the elements is expected to be 'n' but the answer is 0!\n+print(Sum(Sum(e[i, j], (i, 0, n-1)), (j, 0, n-1)).doit())\n\\ No newline at end of file\ndiff --git a/sympy/core/basic.py b/sympy/core/basic.py\nindex b992b45..fe91845 100644\n--- a/sympy/core/basic.py\n+++ b/sympy/core/basic.py\n@@ -1,6 +1,6 @@\n \"\"\"Base class for all the objects in SymPy\"\"\"\n from __future__ import print_function, division\n-from collections import Mapping\n+from collections.abc import Mapping\n \n from .assumptions import BasicMeta, ManagedProperties\n from .cache import cacheit\ndiff --git a/sympy/plotting/plot.py b/sympy/plotting/plot.py\nindex 664602d..6268b99 100644\n--- a/sympy/plotting/plot.py\n+++ b/sympy/plotting/plot.py\n@@ -25,7 +25,7 @@\n from __future__ import print_function, division\n \n import inspect\n-from collections import Callable\n+from collections.abc import Callable\n import warnings\n import sys\n \n"
+    },
+    "django__django-11620": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-11620",
+        "model_patch": "diff --git a/test_url_converter.py b/test_url_converter.py\nnew file mode 100644\nindex 0000000..8b13789\n--- /dev/null\n+++ b/test_url_converter.py\n@@ -0,0 +1 @@\n+\n"
+    },
+    "django__django-14580": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-14580",
+        "model_patch": "diff --git a/django/db/migrations/writer.py b/django/db/migrations/writer.py\nindex 4918261..7cf6ebd 100644\n--- a/django/db/migrations/writer.py\n+++ b/django/db/migrations/writer.py\n@@ -24,6 +24,105 @@ class OperationWriter:\n     def serialize(self):\n \n         def _write(_arg_name, _arg_value):\n+\n+            if (_arg_name in self.operation.serialization_expand_args and\n+\n+                    isinstance(_arg_value, (list, tuple, dict))):\n+\n+                if isinstance(_arg_value, dict):\n+\n+                    self.feed('%s={' % _arg_name)\n+\n+                    self.indent()\n+\n+                    for key, value in _arg_value.items():\n+\n+                        key_string, key_imports = MigrationWriter.serialize(key)\n+\n+                        arg_string, arg_imports = MigrationWriter.serialize(value)\n+\n+                        args = arg_string.splitlines()\n+\n+                        if len(args) > 1:\n+\n+                            self.feed('%s: %s' % (key_string, args[0]))\n+\n+                            for arg in args[1:-1]:\n+\n+                                self.feed(arg)\n+\n+                            self.feed('%s,' % args[-1])\n+\n+                        else:\n+\n+                            self.feed('%s: %s,' % (key_string, arg_string))\n+\n+                        imports.update(key_imports)\n+\n+                        imports.update(arg_imports)\n+\n+                    self.unindent()\n+\n+                    self.feed('},')\n+\n+                else:\n+\n+                    self.feed('%s=[' % _arg_name)\n+\n+                    self.indent()\n+\n+                    for item in _arg_value:\n+\n+                        arg_string, arg_imports = MigrationWriter.serialize(item)\n+\n+                        args = arg_string.splitlines()\n+\n+                        if len(args) > 1:\n+\n+                            for arg in args[:-1]:\n+\n+                                self.feed(arg)\n+\n+                            self.feed('%s,' % args[-1])\n+\n+                        else:\n+\n+                            self.feed('%s,' % arg_string)\n+\n+                        imports.update(arg_imports)\n+\n+                    self.unindent()\n+\n+                    self.feed('],')\n+\n+            else:\n+\n+                arg_string, arg_imports = MigrationWriter.serialize(_arg_value)\n+\n+                args = arg_string.splitlines()\n+\n+                if len(args) > 1:\n+\n+                    self.feed('%s=%s' % (_arg_name, args[0]))\n+\n+                    for arg in args[1:-1]:\n+\n+                        self.feed(arg)\n+\n+                    self.feed('%s,' % args[-1])\n+\n+                else:\n+\n+                    self.feed('%s=%s,' % (_arg_name, arg_string))\n+\n+                imports.update(arg_imports)\n+\n+            # Check if we need to add 'from django.db import models'\n+\n+            if any('models.' in str(value) for value in _arg_value):\n+\n+                imports.add('from django.db import models')\n+\n             if (_arg_name in self.operation.serialization_expand_args and\n                     isinstance(_arg_value, (list, tuple, dict))):\n                 if isinstance(_arg_value, dict):\ndiff --git a/models.py b/models.py\nnew file mode 100644\nindex 0000000..2547eab\n--- /dev/null\n+++ b/models.py\n@@ -0,0 +1,14 @@\n+from django.db import models\n+\n+class MyField(models.TextField):\n+    pass\n+\n+class MyBaseModel(models.Model):\n+    class Meta:\n+        abstract = True\n+\n+class MyMixin:\n+    pass\n+\n+class MyModel(MyMixin, MyBaseModel):\n+    name = MyField(primary_key=True)\n"
+    },
+    "django__django-16820": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-16820",
+        "model_patch": ""
+    },
+    "django__django-12113": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-12113",
+        "model_patch": ""
+    },
+    "django__django-16379": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-16379",
+        "model_patch": "diff --git a/django/core/cache/backends/filebased.py b/django/core/cache/backends/filebased.py\nindex 631da49..215fefb 100644\n--- a/django/core/cache/backends/filebased.py\n+++ b/django/core/cache/backends/filebased.py\n@@ -90,10 +90,11 @@ class FileBasedCache(BaseCache):\n \n     def has_key(self, key, version=None):\n         fname = self._key_to_file(key, version)\n-        if os.path.exists(fname):\n+        try:\n             with open(fname, \"rb\") as f:\n                 return not self._is_expired(f)\n-        return False\n+        except FileNotFoundError:\n+            return False\n \n     def _cull(self):\n         \"\"\"\ndiff --git a/reproduce_cache_race.py b/reproduce_cache_race.py\nnew file mode 100644\nindex 0000000..30be594\n--- /dev/null\n+++ b/reproduce_cache_race.py\n@@ -0,0 +1,29 @@\n+import threading\n+import time\n+from django.core.cache import caches\n+\n+def test_cache_race():\n+    cache = caches['default']\n+    key = 'test_key'\n+    # Set a value with a short timeout to trigger expiration\n+    cache.set(key, 'test_value', timeout=1)\n+    # Wait for the cache to expire\n+    time.sleep(2)\n+    # Check if the key exists\n+    try:\n+        print(cache.has_key(key))\n+    except Exception as e:\n+        print(f\"Error: {e}\")\n+\n+# Create multiple threads to simulate concurrent access\n+threads = []\n+for _ in range(5):\n+    t = threading.Thread(target=test_cache_race)\n+    threads.append(t)\n+    t.start()\n+\n+# Wait for all threads to complete\n+for t in threads:\n+    t.join()\n+\n+print(\"Script completed successfully, no errors.\")\n"
+    },
+    "django__django-13220": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-13220",
+        "model_patch": "diff --git a/django/core/exceptions.py b/django/core/exceptions.py\nindex dc084b8..d8f18cc 100644\n--- a/django/core/exceptions.py\n+++ b/django/core/exceptions.py\n@@ -97,18 +97,41 @@ NON_FIELD_ERRORS = '__all__'\n \n \n class ValidationError(Exception):\n+\n+    \"\"\"An error while validating data.\"\"\"\n+\n+\n+\n+    def __eq__(self, other):\n+\n+        if not isinstance(other, ValidationError):\n+\n+            return NotImplemented\n+\n+        return sorted(self.messages) == sorted(other.messages)\n+\n     \"\"\"An error while validating data.\"\"\"\n     def __init__(self, message, code=None, params=None):\n+\n         \"\"\"\n+\n         The `message` argument can be a single error, a list of errors, or a\n+\n         dictionary that maps field names to lists of errors. What we define as\n+\n         an \"error\" can be either a simple string or an instance of\n+\n         ValidationError with its message attribute set, and what we define as\n+\n         list or dictionary can be an actual `list` or `dict` or an instance\n+\n         of ValidationError with its `error_list` or `error_dict` attribute set.\n+\n         \"\"\"\n+\n         super().__init__(message, code, params)\n \n+\n         if isinstance(message, ValidationError):\n             if hasattr(message, 'error_dict'):\n                 message = message.error_dict\ndiff --git a/test_validation_error.py b/test_validation_error.py\nnew file mode 100644\nindex 0000000..534c0fe\n--- /dev/null\n+++ b/test_validation_error.py\n@@ -0,0 +1,32 @@\n+from django.core.exceptions import ValidationError\n+\n+\n+\n+# Test case 1: Same messages in different order\n+\n+error1 = ValidationError([\"error1\", \"error2\"])\n+\n+error2 = ValidationError([\"error2\", \"error1\"])\n+\n+print(error1 == error2)  # Should print True\n+\n+\n+\n+# Test case 2: Same messages in same order\n+\n+error3 = ValidationError([\"error1\", \"error2\"])\n+\n+error4 = ValidationError([\"error1\", \"error2\"])\n+\n+print(error3 == error4)  # Should print True\n+\n+\n+\n+# Test case 3: Different messages\n+\n+error5 = ValidationError([\"error1\"])\n+\n+error6 = ValidationError([\"error2\"])\n+\n+print(error5 == error6)  # Should print False\n+\n"
+    },
+    "django__django-16255": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-16255",
+        "model_patch": ""
+    },
+    "scikit-learn__scikit-learn-15512": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "scikit-learn__scikit-learn-15512",
+        "model_patch": "diff --git a/reproduce.py b/reproduce.py\nnew file mode 100644\nindex 0000000..eaf3e6c\n--- /dev/null\n+++ b/reproduce.py\n@@ -0,0 +1,8 @@\n+from sklearn.cluster import AffinityPropagation\n+import pandas as pd\n+\n+data = pd.DataFrame([[1,0,0,0,0,0],[0,1,1,1,0,0],[0,0,1,0,0,1]])\n+af = AffinityPropagation(affinity='euclidean', verbose=True, copy=False, max_iter=2).fit(data)\n+\n+print(af.cluster_centers_indices_)\n+print(af.labels_)\n"
+    },
+    "django__django-13448": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-13448",
+        "model_patch": "diff --git a/django/test/runner.py b/django/test/runner.py\nindex 83f06c7..beac5d8 100644\n--- a/django/test/runner.py\n+++ b/django/test/runner.py\n@@ -65,7 +65,11 @@ class DebugSQLTextTestResult(unittest.TextTestResult):\n         self.failures[-1] = self.failures[-1] + (self.debug_sql_stream.read(),)\n \n     def addSubTest(self, test, subtest, err):\n-        super().addSubTest(test, subtest, err)\n+        # If MIGRATE is False, ensure necessary tables are created\n+\n+        if not self.connection.settings_dict.get('TEST', {}).get('MIGRATE', True):\n+\n+            self._create_tables_for_apps()\n         if err is not None:\n             self.debug_sql_stream.seek(0)\n             errors = self.failures if issubclass(err[0], test.failureException) else self.errors\ndiff --git a/test_script.py b/test_script.py\nnew file mode 100644\nindex 0000000..7c340fe\n--- /dev/null\n+++ b/test_script.py\n@@ -0,0 +1,6 @@\n+import os\n+os.environ['DJANGO_SETTINGS_MODULE'] = 'myproject.settings'\n+from django.test.runner import DiscoverRunner\n+\n+runner = DiscoverRunner()\n+runner.setup_databases(aliases=['default'], keepdb=False, verbosity=0)\n"
+    },
+    "django__django-15252": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-15252",
+        "model_patch": "diff --git a/test_router.py b/test_router.py\nnew file mode 100644\nindex 0000000..bb18ee6\n--- /dev/null\n+++ b/test_router.py\n@@ -0,0 +1,17 @@\n+from django.conf import settings\n+from django.db import connections, router\n+from django.db.migrations.executor import MigrationExecutor\n+\n+class TestRouter:\n+    def allow_migrate(self, db, model):\n+        return db == 'default'\n+\n+settings.DATABASE_ROUTERS = [TestRouter()]\n+\n+def test_migration_recorder():\n+    # Create test databases\n+    # Run migrations\n+    # Check if Migration table exists in non-default databases\n+    pass\n+\n+test_migration_recorder()\n"
+    },
+    "pytest-dev__pytest-7432": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "pytest-dev__pytest-7432",
+        "model_patch": "diff --git a/reproduce.py b/reproduce.py\nnew file mode 100644\nindex 0000000..8b13789\n--- /dev/null\n+++ b/reproduce.py\n@@ -0,0 +1 @@\n+\n"
+    },
+    "pydata__xarray-5131": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "pydata__xarray-5131",
+        "model_patch": "diff --git a/reproduce.py b/reproduce.py\nnew file mode 100644\nindex 0000000..8b13789\n--- /dev/null\n+++ b/reproduce.py\n@@ -0,0 +1 @@\n+\n"
+    },
+    "django__django-14752": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-14752",
+        "model_patch": "diff --git a/django/contrib/admin/views/autocomplete.py b/django/contrib/admin/views/autocomplete.py\nindex 3903e4c..6110b49 100644\n--- a/django/contrib/admin/views/autocomplete.py\n+++ b/django/contrib/admin/views/autocomplete.py\n@@ -26,12 +26,12 @@ class AutocompleteJsonView(BaseListView):\n         context = self.get_context_data()\n         return JsonResponse({\n             'results': [\n-                {'id': str(getattr(obj, to_field_name)), 'text': str(obj)}\n-                for obj in context['object_list']\n+                self.serialize_result(obj, to_field_name) for obj in context['object_list']\n             ],\n             'pagination': {'more': context['page_obj'].has_next()},\n         })\n-\n+    def serialize_result(self, obj, to_field_name):\n+        return {'id': str(getattr(obj, to_field_name)), 'text': str(obj)}\n     def get_paginator(self, *args, **kwargs):\n         \"\"\"Use the ModelAdmin's paginator.\"\"\"\n         return self.model_admin.get_paginator(self.request, *args, **kwargs)\n"
+    },
+    "astropy__astropy-14182": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "astropy__astropy-14182",
+        "model_patch": "diff --git a/reproduce.py b/reproduce.py\nnew file mode 100644\nindex 0000000..8b13789\n--- /dev/null\n+++ b/reproduce.py\n@@ -0,0 +1 @@\n+\n"
+    },
+    "django__django-15851": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-15851",
+        "model_patch": "diff --git a/django/db/backends/postgresql/client.py b/django/db/backends/postgresql/client.py\nindex 4c9bd63..3b5ddaf 100644\n--- a/django/db/backends/postgresql/client.py\n+++ b/django/db/backends/postgresql/client.py\n@@ -32,9 +32,9 @@ class DatabaseClient(BaseDatabaseClient):\n             args += [\"-h\", host]\n         if port:\n             args += [\"-p\", str(port)]\n+        args.extend(parameters)\n         if dbname:\n             args += [dbname]\n-        args.extend(parameters)\n \n         env = {}\n         if passwd:\n"
+    },
+    "django__django-13660": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-13660",
+        "model_patch": "diff --git a/reproduce.py b/reproduce.py\nnew file mode 100644\nindex 0000000..8b13789\n--- /dev/null\n+++ b/reproduce.py\n@@ -0,0 +1 @@\n+\n"
+    },
+    "pytest-dev__pytest-9359": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "pytest-dev__pytest-9359",
+        "model_patch": "diff --git a/reproduce.py b/reproduce.py\nnew file mode 100644\nindex 0000000..ccfa15e\n--- /dev/null\n+++ b/reproduce.py\n@@ -0,0 +1,25 @@\n+from pytest import fixture\n+\n+\n+def t(foo):\n+    return foo\n+\n+\n+@fixture\n+def foo():\n+    return 1\n+\n+\n+def test_right_statement(foo):\n+    assert foo == (3 + 2) * (6 + 9)\n+\n+    @t\n+    def inner():\n+        return 2\n+\n+    assert 2 == inner\n+\n+\n+@t\n+def outer():\n+    return 2\n"
+    },
+    "django__django-12125": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-12125",
+        "model_patch": ""
+    },
+    "django__django-11910": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-11910",
+        "model_patch": "diff --git a/reproduce.py b/reproduce.py\nnew file mode 100644\nindex 0000000..1405459\n--- /dev/null\n+++ b/reproduce.py\n@@ -0,0 +1,26 @@\n+from django.db import models\n+from django.db.migrations import operations\n+from django.db.models import deletion\n+\n+class ModelA(models.Model):\n+    field_wrong = models.CharField('field1', max_length=50, primary_key=True) # I'm a Primary key.\n+\n+class ModelB(models.Model):\n+    field_fk = models.ForeignKey(ModelA, blank=True, null=True, on_delete=models.CASCADE) \n+\n+class Migration(operations.Migration):\n+    dependencies = [\n+        ('app1', '0001_initial'),\n+    ]\n+    operations = [\n+        operations.RenameField(\n+            model_name='modela',\n+            old_name='field_wrong',\n+            new_name='field_fixed',\n+        ),\n+        operations.AlterField(\n+            model_name='modelb',\n+            name='field_fk',\n+            field=models.ForeignKey(blank=True, null=True, on_delete=deletion.CASCADE, to='app1.ModelA', to_field='field_wrong'),\n+        ),\n+    ]\n"
+    },
+    "django__django-15202": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-15202",
+        "model_patch": "diff --git a/test_urlfield.py b/test_urlfield.py\nnew file mode 100644\nindex 0000000..fb3c9b6\n--- /dev/null\n+++ b/test_urlfield.py\n@@ -0,0 +1,13 @@\n+from django import forms\n+from django.core.exceptions import ValidationError\n+\n+def test_urlfield():\n+    field = forms.URLField()\n+    try:\n+        field.clean('////]@N.AN')\n+    except ValueError as e:\n+        print(f\"Caught ValueError: {e}\")\n+    except ValidationError as e:\n+        print(f\"Caught ValidationError: {e}\")\n+\n+test_urlfield()\n"
+    },
+    "pytest-dev__pytest-7490": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "pytest-dev__pytest-7490",
+        "model_patch": "diff --git a/reproduce.py b/reproduce.py\nnew file mode 100644\nindex 0000000..e1d30df\n--- /dev/null\n+++ b/reproduce.py\n@@ -0,0 +1,6 @@\n+import pytest\n+\n+def test_xfail_test(request):\n+    mark = pytest.mark.xfail(reason=\"xfail\")\n+    request.node.add_marker(mark)\n+    assert 0\n\\ No newline at end of file\n"
+    },
+    "django__django-11583": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-11583",
+        "model_patch": ""
+    },
+    "pylint-dev__pylint-5859": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "pylint-dev__pylint-5859",
+        "model_patch": "diff --git a/test.py b/test.py\nnew file mode 100644\nindex 0000000..f331db7\n--- /dev/null\n+++ b/test.py\n@@ -0,0 +1,3 @@\n+# YES: yes\n+\n+# ???: no\n"
+    },
+    "django__django-14999": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-14999",
+        "model_patch": ""
+    },
+    "django__django-11797": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-11797",
+        "model_patch": "diff --git a/reproduce.py b/reproduce.py\nnew file mode 100644\nindex 0000000..0821a43\n--- /dev/null\n+++ b/reproduce.py\n@@ -0,0 +1,8 @@\n+from django.contrib.auth import models\n+from django.db.models import Max\n+\n+a = models.User.objects.filter(email__isnull=True).values('email').annotate(m=Max('id')).values('m')\n+print(a.query)  # good\n+print(a[:1].query)  # good\n+b = models.User.objects.filter(id=a[:1])\n+print(b.query)  # should have GROUP BY U0.\"email\"\n"
+    },
+    "scikit-learn__scikit-learn-25747": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "scikit-learn__scikit-learn-25747",
+        "model_patch": "diff --git a/reproduce.py b/reproduce.py\nnew file mode 100644\nindex 0000000..f74a0d1\n--- /dev/null\n+++ b/reproduce.py\n@@ -0,0 +1,55 @@\n+import pandas as pd\n+\n+from sklearn.base import BaseEstimator, TransformerMixin\n+\n+from sklearn import set_config\n+\n+from sklearn.pipeline import make_union\n+\n+\n+\n+index = pd.date_range(start=\"2020-01-01\", end=\"2020-01-05\", inclusive=\"left\", freq=\"H\")\n+\n+data = pd.DataFrame(index=index, data=[10] * len(index), columns=[\"value\"])\n+\n+data[\"date\"] = index.date\n+\n+\n+\n+\n+\n+class MyTransformer(BaseEstimator, TransformerMixin):\n+\n+    def fit(self, X: pd.DataFrame, y: pd.Series | None = None, **kwargs):\n+\n+        return self\n+\n+\n+\n+    def transform(self, X: pd.DataFrame, y: pd.Series | None = None) -> pd.DataFrame:\n+\n+        grouped = X[\"value\"].groupby(X[\"date\"]).sum()\n+\n+        X_transformed = X.copy()\n+\n+        X_transformed[\"value\"] = X[\"date\"].map(grouped)\n+\n+        return X_transformed\n+\n+\n+\n+\n+\n+# This works.\n+\n+set_config(transform_output=\"default\")\n+\n+print(make_union(MyTransformer()).fit_transform(data))\n+\n+\n+\n+# This does not work.\n+\n+set_config(transform_output=\"pandas\")\n+\n+print(make_union(MyTransformer()).fit_transform(data))\n"
+    },
+    "sphinx-doc__sphinx-8273": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "sphinx-doc__sphinx-8273",
+        "model_patch": "diff --git a/doc/conf.py b/doc/conf.py\nindex f62e02a..860ecee 100644\n--- a/doc/conf.py\n+++ b/doc/conf.py\n@@ -92,11 +92,11 @@ extlinks = {'duref': ('http://docutils.sourceforge.net/docs/ref/rst/'\n                       'directives.html#%s', '')}\n \n man_pages = [\n-    ('contents', 'sphinx-all', 'Sphinx documentation generator system manual',\n+    ('contents', 'sphinx-all.1', 'Sphinx documentation generator system manual',\n      'Georg Brandl', 1),\n-    ('man/sphinx-build', 'sphinx-build', 'Sphinx documentation generator tool',\n+    ('man/sphinx-build', 'sphinx-build.1', 'Sphinx documentation generator tool',\n      '', 1),\n-    ('man/sphinx-quickstart', 'sphinx-quickstart', 'Sphinx documentation '\n+    ('man/sphinx-quickstart', 'sphinx-quickstart.1', 'Sphinx documentation '\n      'template generator', '', 1),\n     ('man/sphinx-apidoc', 'sphinx-apidoc', 'Sphinx API doc generator tool',\n      '', 1),\n"
+    },
+    "django__django-11039": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-11039",
+        "model_patch": "diff --git a/django/core/management/commands/sqlmigrate.py b/django/core/management/commands/sqlmigrate.py\nindex f0b6632..b51d173 100644\n--- a/django/core/management/commands/sqlmigrate.py\n+++ b/django/core/management/commands/sqlmigrate.py\n@@ -56,7 +56,7 @@ class Command(BaseCommand):\n         targets = [(app_label, migration.name)]\n \n         # Show begin/end around output only for atomic migrations\n-        self.output_transaction = migration.atomic\n+        self.output_transaction = migration.atomic and connection.features.can_rollback_ddl\n \n         # Make a plan that represents just the requested migrations and show SQL\n         # for it\n"
+    },
+    "sympy__sympy-12171": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "sympy__sympy-12171",
+        "model_patch": "diff --git a/sympy/printing/mathematica.py b/sympy/printing/mathematica.py\nindex 4c2ffd8..4c5fac7 100644\n--- a/sympy/printing/mathematica.py\n+++ b/sympy/printing/mathematica.py\n@@ -97,8 +97,12 @@ def _print_Function(self, expr):\n             for cond, mfunc in cond_mfunc:\n                 if cond(*expr.args):\n                     return \"%s[%s]\" % (mfunc, self.stringify(expr.args, \", \"))\n-        return expr.func.__name__ + \"[%s]\" % self.stringify(expr.args, \", \")\n+    def _print_Derivative(self, expr):\n+        return \"D[%s]\" % (self.stringify(expr.args, \", \"))\n \n+    def _print_Float(self, expr):\n+        res = str(expr)\n+        return res.replace('e', '*^')\n     def _print_Integral(self, expr):\n         if len(expr.variables) == 1 and not expr.limits[0][1:]:\n             args = [expr.args[0], expr.variables[0]]\n"
+    },
+    "matplotlib__matplotlib-24265": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "matplotlib__matplotlib-24265",
+        "model_patch": "diff --git a/reproduce.py b/reproduce.py\nnew file mode 100644\nindex 0000000..ced5a8d\n--- /dev/null\n+++ b/reproduce.py\n@@ -0,0 +1,3 @@\n+import matplotlib.pyplot as plt\n+\n+the_rc = plt.style.library[\"seaborn-colorblind\"]\n"
+    },
+    "pytest-dev__pytest-7373": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "pytest-dev__pytest-7373",
+        "model_patch": "diff --git a/test_module_1.py b/test_module_1.py\nnew file mode 100644\nindex 0000000..563d4e0\n--- /dev/null\n+++ b/test_module_1.py\n@@ -0,0 +1,7 @@\n+import pytest\n+\n+skip = True\n+\n+@pytest.mark.skipif(\"skip\")\n+def test_should_skip():\n+    assert False\ndiff --git a/test_module_2.py b/test_module_2.py\nnew file mode 100644\nindex 0000000..137ab0d\n--- /dev/null\n+++ b/test_module_2.py\n@@ -0,0 +1,7 @@\n+import pytest\n+\n+skip = False\n+\n+@pytest.mark.skipif(\"skip\")\n+def test_should_not_skip():\n+    assert False\n"
+    },
+    "django__django-17087": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-17087",
+        "model_patch": "diff --git a/django/db/migrations/operations/fields.py b/django/db/migrations/operations/fields.py\nindex fc5640b..3db8742 100644\n--- a/django/db/migrations/operations/fields.py\n+++ b/django/db/migrations/operations/fields.py\n@@ -104,7 +104,7 @@ class AddField(FieldOperation):\n             from_model = from_state.apps.get_model(app_label, self.model_name)\n             field = to_model._meta.get_field(self.name)\n             if not self.preserve_default:\n-                field.default = self.field.default\n+                field.default = self.field.default.__qualname__\n             schema_editor.add_field(\n                 from_model,\n                 field,\ndiff --git a/reproduce.py b/reproduce.py\nnew file mode 100644\nindex 0000000..8e818f9\n--- /dev/null\n+++ b/reproduce.py\n@@ -0,0 +1,16 @@\n+from django.db import models\n+\n+class Profile(models.Model):\n+    class Capability(models.TextChoices):\n+        BASIC = (\"BASIC\", \"Basic\")\n+        PROFESSIONAL = (\"PROFESSIONAL\", \"Professional\")\n+        \n+        @classmethod\n+        def default(cls) -> list[str]:\n+            return [cls.BASIC]\n+    \n+    capabilities = models.ArrayField(\n+        models.CharField(choices=Capability.choices, max_length=30, blank=True),\n+        null=True,\n+        default=Capability.default\n+    )\n"
+    },
+    "django__django-16595": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-16595",
+        "model_patch": "diff --git a/reproduce.py b/reproduce.py\nnew file mode 100644\nindex 0000000..26bd5f1\n--- /dev/null\n+++ b/reproduce.py\n@@ -0,0 +1,27 @@\n+from django.db import migrations, models\n+from django.db.migrations import optimizer\n+\n+operations = [\n+    migrations.AddField(\n+        model_name=\"book\",\n+        name=\"title\",\n+        field=models.CharField(max_length=256, null=True),\n+    ),\n+    migrations.AlterField(\n+        model_name=\"book\",\n+        name=\"title\",\n+        field=models.CharField(max_length=128, null=True),\n+    ),\n+    migrations.AlterField(\n+        model_name=\"book\",\n+        name=\"title\",\n+        field=models.CharField(max_length=128, null=True, help_text=\"help\"),\n+    ),\n+    migrations.AlterField(\n+        model_name=\"book\",\n+        name=\"title\",\n+        field=models.CharField(max_length=128, null=True, help_text=\"help\", default=None),\n+    ),\n+]\n+\n+optimizer.optimize(operations[1:], \"books\")\n"
+    },
+    "django__django-13551": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-13551",
+        "model_patch": "diff --git a/django/contrib/auth/tokens.py b/django/contrib/auth/tokens.py\nindex 93e2d71..cae3f0f 100644\n--- a/django/contrib/auth/tokens.py\n+++ b/django/contrib/auth/tokens.py\n@@ -1,5 +1,38 @@\n+from django.conf import settings\n+from django.contrib.auth.models import User\n+from django.contrib.auth.tokens import PasswordResetTokenGenerator\n from datetime import datetime\n \n+def test_password_reset_token():\n+    # Create test user\n+    user = User.objects.create_user(\n+        username='testuser',\n+        email='old@example.com',\n+        password='testpassword'\n+    )\n+    \n+    # Get token generator\n+    token_generator = PasswordResetTokenGenerator()\n+    \n+    # Generate token with old email\n+    token = token_generator.make_token(user)\n+    \n+    # Change user's email\n+    user.email = 'new@example.com'\n+    user.save()\n+    \n+    # Check if old token is still valid (should be False)\n+    is_valid = token_generator.check_token(user, token)\n+    \n+    print(f\"Token valid with new email: {is_valid}\")\n+    if not is_valid:\n+        print(\"\u2705 Fix successful: Old token is now invalid after email change\")\n+    else:\n+        print(\"\u274c Fix failed: Old token is still valid with new email\")\n+\n+if __name__ == \"__main__\":\n+    test_password_reset_token()\n+\n from django.conf import settings\n from django.utils.crypto import constant_time_compare, salted_hmac\n from django.utils.http import base36_to_int, int_to_base36\n@@ -94,7 +127,7 @@ class PasswordResetTokenGenerator:\n         # Truncate microseconds so that tokens are consistent even if the\n         # database doesn't support microseconds.\n         login_timestamp = '' if user.last_login is None else user.last_login.replace(microsecond=0, tzinfo=None)\n-        return str(user.pk) + user.password + str(login_timestamp) + str(timestamp)\n+        return str(user.pk) + user.password + str(login_timestamp) + str(timestamp) + user.email\n \n     def _num_seconds(self, dt):\n         return int((dt - datetime(2001, 1, 1)).total_seconds())\ndiff --git a/test_password_reset.py b/test_password_reset.py\nnew file mode 100644\nindex 0000000..6765be6\n--- /dev/null\n+++ b/test_password_reset.py\n@@ -0,0 +1,34 @@\n+from django.conf import settings\n+from django.contrib.auth.models import User\n+from django.contrib.auth.tokens import PasswordResetTokenGenerator\n+from datetime import datetime\n+\n+def test_password_reset_token():\n+    # Create test user\n+    user = User.objects.create_user(\n+        username='testuser',\n+        email='old@example.com',\n+        password='testpassword'\n+    )\n+    \n+    # Get token generator\n+    token_generator = PasswordResetTokenGenerator()\n+    \n+    # Generate token with old email\n+    token = token_generator.make_token(user)\n+    \n+    # Change user's email\n+    user.email = 'new@example.com'\n+    user.save()\n+    \n+    # Check if old token is still valid (should be False)\n+    is_valid = token_generator.check_token(user, token)\n+    \n+    print(f\"Token valid with new email: {is_valid}\")\n+    if not is_valid:\n+        print(\"\u2705 Fix successful: Old token is now invalid after email change\")\n+    else:\n+        print(\"\u274c Fix failed: Old token is still valid with new email\")\n+\n+if __name__ == \"__main__\":\n+    test_password_reset_token()\n"
+    },
+    "django__django-12453": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-12453",
+        "model_patch": ""
+    },
+    "django__django-15695": {
+        "model_name_or_path": "qwen3:14b__t-0.00__p-1.00__c-0.00___esquivelgorF2_SBL_TE_84_test",
+        "instance_id": "django__django-15695",
+        "model_patch": "diff --git a/reproduce_rename.py b/reproduce_rename.py\nnew file mode 100644\nindex 0000000..8b13789\n--- /dev/null\n+++ b/reproduce_rename.py\n@@ -0,0 +1 @@\n+\ndiff --git a/tests/migrations/test_rename_index.py b/tests/migrations/test_rename_index.py\nnew file mode 100644\nindex 0000000..fd5fce2\n--- /dev/null\n+++ b/tests/migrations/test_rename_index.py\n@@ -0,0 +1,83 @@\n+from django.db import migrations, models\n+from django.db.migrations.operations.fields import RenameIndex\n+from django.db import connection\n+from django.db.migrations.state import ProjectState\n+\n+def test_rename_index_backward():\n+    # Setup\n+    project_state = ProjectState()\n+    new_state = project_state.clone()\n+    operation = RenameIndex(model_name='pony', old_name='old_pony_test_idx', new_name='new_pony_test_idx')\n+    operation.state_forwards('test_app', new_state)\n+\n+    # Apply forward\n+    with connection.schema_editor() as editor:\n+        operation.database_forwards('test_app', editor, project_state, new_state)\n+\n+    # Apply backward\n+    with connection.schema_editor() as editor:\n+        operation.database_backwards('test_app', editor, new_state, project_state)\n+\n+    # Check if index exists\n+    with connection.cursor() as cursor:\n+        cursor.execute(\"SELECT indexname FROM pg_indexes WHERE indexname = 'new_pony_test_idx';\")\n+        result = cursor.fetchone()\n+        assert result is not None, \"Index should exist after forward operation\"\n+\n+    # Re-apply forward\n+    with connection.schema_editor() as editor:\n+        operation.database_forwards('test_app', editor, project_state, new_state)\n+\n+    # Check for error\n+    try:\n+        with connection.schema_editor() as editor:\n+            operation.database_backwards('test_app', editor, new_state, project_state)\n+    except Exception as e:\n+        assert \"relation \\\"new_pony_test_idx\\\" already exists\" in str(e), \"Expected error not raised\"\n+\n+from django.db.migrations.operations.base import Operation\n+\n+class RenameIndex(Operation):\n+    \"\"\"Renames an index on a model.\"\"\"\n+    def __init__(self, model_name, old_name, new_name):\n+        self.model_name = model_name\n+        self.old_name = old_name\n+        self.new_name = new_name\n+\n+    def deconstruct(self):\n+        return (\n+            \"RenameIndex\",\n+            [],\n+            {\"model_name\": self.model_name, \"old_name\": self.old_name, \"new_name\": self.new_name},\n+        )\n+\n+    def state_forwards(self, app_label, state):\n+        model = state.models[app_label, self.model_name]\n+        if self.old_name in model._indexes:\n+            model._indexes[self.new_name] = model._indexes.pop(self.old_name)\n+        else:\n+            raise ValueError(\"Index %s not found on model %s\" % (self.old_name, self.model_name))\n+\n+    def state_backwards(self, app_label, state):\n+        model = state.models[app_label, self.model_name]\n+        if self.new_name in model._indexes:\n+            model._indexes[self.old_name] = model._indexes.pop(self.new_name)\n+        else:\n+            raise ValueError(\"Index %s not found on model %s\" % (self.new_name, self.model_name))\n+\n+    def database_forwards(self, app_label, schema_editor, from_state, to_state):\n+        from_model = from_state.models[app_label, self.model_name]\n+        to_model = to_state.models[app_label, self.model_name]\n+        if self.old_name in from_model._indexes:\n+            schema_editor.alter_index(from_model, self.old_name, self.new_name)\n+        else:\n+            raise ValueError(\"Index %s not found on model %s\" % (self.old_name, self.model_name))\n+\n+    def database_backwards(self, app_label, schema_editor, from_state, to_state):\n+        from_model = from_state.models[app_label, self.model_name]\n+        to_model = to_state.models[app_label, self.model_name]\n+        if self.new_name in from_model._indexes:\n+            schema_editor.drop_index(from_model, self.new_name)\n+            schema_editor.create_index(from_model, self.old_name)\n+        else:\n+            raise ValueError(\"Index %s not found on model %s\" % (self.new_name, self.model_name))\n\\ No newline at end of file\n"
+    }
+}
